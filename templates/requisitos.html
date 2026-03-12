@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Requisitos - Avaliação Formativa</title>
+    <style>
+        /* Estilos mantidos para referência */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #007bff;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+        }
+
+        section {
+            max-width: 800px;
+            margin: 2em auto;
+            padding: 2em;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        h1 {
+            color: #ffffff;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .acao-buttons {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .acao-buttons button {
+            width: 80px;
+            height: 60px;
+            padding: 5px;
+        }
+
+
+        footer {
+            text-align: center;
+            padding: 1em;
+            background-color: #007bff;
+            color: #fff;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Requisitos - Avaliação Formativa de Python</h1>
+        <p>Cadastre e visualize os requisitos para a avaliação formativa em Python.</p>
+    </header>
+
+    <section>
+        <!-- Formulário para cadastrar requisitos -->
+        <form action="/descricao/post" method="post">
+            <label for="descricao">Descrição:</label>
+            <input type="text" id="descricao" name="input_descricao">
+
+            <label for="nivel">Nível:</label>
+
+
+            <select id="nivel" name="input_nivel">
+                <option value="Básico">Básico</option>
+                <option value="Intermediário">Intermediário</option>
+                <option value="Avançado">Avançado</option>
+            </select>
+
+
+            <label for="valor">Valor:</label>
+            <input type="text" id="valor" name="input_valor">
+
+            <button type="submit">Cadastrar</button>
+        </form>
+
+        <!-- Tabela de requisitos cadastrados -->
+        <h2>Requisitos Cadastrados:</h2>
+        <table>
+            <thead>
+                
+                <tr>
+                    <th style="min-width: 300px;">Descrição</th>
+                    <th>Nível</th>
+                    <th>Valor</th>
+                    <th>Situação</th>
+                    <th style="text-align: center;">Ações</th>
+                </tr>
+                
+            </thead>
+            <tbody id="listaRequisitos">
+                <!-- Requisitos serão adicionados-->
+                {% for requisito in requisitos%}
+                <tr>
+                    <td>{{requisito.descricao}}</td>
+                    <td>Básico</td>
+                    <td>16</td>
+                    <td>Resolvido</td>
+                    <td class="acao-buttons" >
+                        <button style="background-color: rgba(180, 50, 50, 0.868);"> <a href="/requisitos/delete/{{requisito.cod_requisito}}">Deletar</a></button>
+                        <button style="background-color: rgb(2, 109, 66);"> <a href="/requisitos/ativar/{{requisito.cod_requisito}}"></a>Marcar como Resolvido</button>
+                        <button style="background-color: rgb(45, 2, 109);">Marcar como Pendente</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Avaliação Formativa de Python</p>
+    </footer>
+
+</body>
+</html>
