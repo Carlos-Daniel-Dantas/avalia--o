@@ -54,24 +54,20 @@ def excluir_requisitos(cod_requisitos):
         conexao.close()
 
 
-def mudar_requisitos(codigo:int, status:bool ):
-        
-        conexao, cursor = conectar()
+def mudar_requisitos(codigo:int, status:str ):
+             
+    conexao, cursor = conectar()
 
-        cursor.execute("""
-                        
-                        UPDATE tb_requisitos SET ativo = %s
-                        WHERE codigo = %s
-                        
-                        """,
+    cursor.execute("""
+                    
+                    UPDATE tb_requisitos SET situacao = %s
+                    WHERE cod_requisito = %s
+                    
+                    """,
 
-                        [status, codigo]
+                    [status, codigo]
 
-                        )
-        
-        conexao.commit()
-        conexao.close()
-
-
-
-
+                    )
+    
+    conexao.commit()
+    conexao.close()

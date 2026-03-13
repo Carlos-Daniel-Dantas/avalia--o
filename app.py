@@ -50,7 +50,8 @@ def api_excluir_requisitos (codigo):
 @app.route("/requisitos/ativar/<codigo>/<status>")
 def mudar_status_requisitos (codigo, status):
     mudar_requisitos(codigo, status)
-    return redirect("/admin")
+
+    return redirect("/requisitos")
 
 
 
