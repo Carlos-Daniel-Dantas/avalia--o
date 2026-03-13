@@ -100,6 +100,12 @@
             bottom: 0;
             width: 100%;
         }
+
+        a{
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
@@ -157,9 +163,12 @@
 
                         <button style="background-color: rgba(180, 50, 50, 0.868);"> <a href="/requisitos/delete/{{requisito.cod_requisito}}">Deletar</a></button>
 
-                        <button style="background-color: rgb(2, 109, 66);"> <a href="/requisitos/ativar/{{requisito.cod_requisito}}/Resolvido">Marcar como Resolvido</a></button>
+                        {%if requisito.situacao == "Pendente"%}
 
+                        <button style="background-color: rgb(2, 109, 66);"> <a href="/requisitos/ativar/{{requisito.cod_requisito}}/Resolvido">Marcar como Resolvido</a></button>
+                        {%else%}
                         <button style="background-color: rgb(45, 2, 109);"> <a href="/requisitos/ativar/{{requisito.cod_requisito}}/Pendente">Marcar como Pendente</a></button>
+                        {%endif%}
                     </td>
                 </tr>
                 {% endfor %}
